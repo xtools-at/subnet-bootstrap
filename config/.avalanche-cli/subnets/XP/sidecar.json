@@ -7,7 +7,13 @@
     "TokenName": "XP",
     "ChainID": "",
     "Version": "1.3.0",
-    "Networks": null,
+    "Networks": {
+        "Fuji": {
+            "SubnetID": "5NwYE9TC3FLB3q8QYFxV5foXp4hWX9avWXkzmjwoNv7DzRg2B",
+            "BlockchainID": "2NXVLcGbemMjwyexwigxCoqn7UJ6DdeJdWNPxcWX4Y2eDem1aW",
+            "RPCVersion": 24
+        }
+    },
     "ImportedFromAPM": false,
     "ImportedVMID": ""
 }

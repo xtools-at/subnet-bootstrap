@@ -1,1 +1,10 @@
+# misc
+.DS_Store
+*.pem
+.temp
+.idea
+
+# custom
 certs/*
+test.sh
+*.pk
