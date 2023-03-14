@@ -40,15 +40,18 @@ sed '$d' ~/.avalanchego/configs/node.json > ~/.avalanchego/configs/tmp.json
 echo ", \"track-subnets\": \"$SUBNET_ID\"}" >> ~/.avalanchego/configs/tmp.json
 rm ~/.avalanchego/configs/node.json
 mv ~/.avalanchego/configs/tmp.json ~/.avalanchego/configs/node.json
+echo ""
 
 # Restart node to apply subnet config
 echo "Restarting node to apply config..."
-sudo systemctl restart avalanchego.service
+sudo systemctl restart avalanchego
 echo ""
 
 # Display NodeID
 echo "Getting NodeID from logs..."
+sleep 10
+wait
 sed -n '/initializing node {/,/nodePOP/p' ~/.avalanchego/logs/main.log
 echo ""
 
-echo "All done! Run `export PATH=\~/bin:\$PATH` to use Avalanche CLI directly."
+echo "All done! Run 'export PATH=~/bin:\$PATH' to use Avalanche CLI directly."

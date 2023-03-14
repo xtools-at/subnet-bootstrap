@@ -35,7 +35,7 @@ sudo systemctl status avalanchego
 ### Prep
 - Have [Avalanche-CLI](https://docs.avax.network/subnets/install-avalanche-cli) ready and installed on your local machine
 - Wait for your node to be *fully* bootstrapped and in sync with the network
-- Add the node as a **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_
+- Add the node as a **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_, which you can e.g. extract from `cat ~/.avalanchego/logs/main.log` or copy from the setup output:
 
 ### On your local machine
 - Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on the VPS:
@@ -49,7 +49,7 @@ avalanche key create myKeyName --file /tmp/test.pk
 # show private key
 avalanche key export myKeyName
 ```
-- Give the node permission to become validator on your subnet ("XP" in our example). You'll need your node's _NodeID_, which you can e.g. extract from `~/.avalanchego/logs/main.log` or copy from the setup output:
+- Give the node permission to become validator on your subnet ("XP" in our example). You'll need your node's _NodeID_:
 ```
 avalanche subnet addValidator XP
 ```
