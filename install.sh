@@ -44,14 +44,14 @@ echo ""
 
 # Restart node to apply subnet config
 echo "Restarting node to apply config..."
-sudo systemctl restart avalanchego
+sudo systemctl start avalanchego
 echo ""
 
 # Display NodeID
 echo "Getting NodeID from logs..."
-sleep 10
+sleep 15
 wait
-sed -n '/initializing node {/,/nodePOP/p' ~/.avalanchego/logs/main.log
+head ~/.avalanchego/logs/main.log -n 1 | grep "\"nodeID\": \"NodeID-"
 echo ""
 
 echo "All done! Run 'export PATH=~/bin:\$PATH' to use Avalanche CLI directly."
