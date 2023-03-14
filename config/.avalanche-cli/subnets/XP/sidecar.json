@@ -1,0 +1,13 @@
+{
+    "Name": "XP",
+    "VM": "Subnet-EVM",
+    "VMVersion": "v0.4.11",
+    "RPCVersion": 24,
+    "Subnet": "XP",
+    "TokenName": "XP",
+    "ChainID": "",
+    "Version": "1.3.0",
+    "Networks": null,
+    "ImportedFromAPM": false,
+    "ImportedVMID": ""
+}
