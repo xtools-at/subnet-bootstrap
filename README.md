@@ -1,7 +1,15 @@
 # Subnet Node Bootstrap Script
 
+## Quickstart: Bootstrap node with DO Snapshot
+Syncing a node fully can take some time, so we can use a partly bootstrapped node
+- Go to DigitalOcean -> Images -> Snapshot
+- Click the three-dot-menu on the most recent `synced-node` snapshot
+- Verify that the snapshot is available for the region you want to deploy your VPS to
+- Select "Create droplet" and spin up a VPS using the snapshot
+- If this node is supposed to become a validator, proceed with the steps for _Add node as subnet validator_ below
+  - If you want it to be a RPC node instead, open `~/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file
 
-## Bootstrap node
+## Bootstrap node with script
 This downloads the AvalancheGo node client, Avalanche CLI, and adds all necessary config for our Dev Subnet for Ubuntu/Debian based VPS.
 
 ### Add new user
@@ -17,8 +25,7 @@ Have your VPS' static IP handy. If you're bootstrapping a validator, keep RPC di
 ```
 git clone https://github.com/xtools-at/subnet-bootstrap.git
 cd subnet-bootstrap
-chmod 755 install.sh
-./install.sh
+sh install.sh
 ```
 
 ### Starting/Stopping the node
@@ -35,7 +42,7 @@ sudo systemctl status avalanchego
 ### Prep
 - Have [Avalanche-CLI](https://docs.avax.network/subnets/install-avalanche-cli) ready and installed on your local machine
 - Wait for your node to be *fully* bootstrapped and in sync with the network
-- Add the node as a **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_, which you can e.g. extract from `cat ~/.avalanchego/logs/main.log` or copy from the setup output:
+- Add the node as a **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_, which you can e.g. get running `./node_id.sh`, extract from `head -n 5 ~/.avalanchego/logs/main.log`, or copy from the setup output
 
 ### On your local machine
 - Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on the VPS:
@@ -55,15 +62,16 @@ avalanche subnet addValidator XP
 ```
 
 ### On your node
-- when your validator is all set on Avalanche network, run `avalanche subnet join XP` to add it to the subnet too
+- when your validator is all set on Avalanche network, run `~/bin/avalanche subnet join XP` to add it to the subnet too
 
 
 ## Misc
 - Don't forget to remove your user from the sudo'ers list when you're done: `sudo deluser node sudo`
-- YOu can find all lod files here: `ls -la ~/.avalanchego/logs/`
+- You can find all log files here: `ls -la ~/.avalanchego/logs/`
 - To back up your validator/nodeID, copy the contents of `~/.avalanchego/staking/`
 - To update your node to the latest version, simply run `avalanchego-installer.sh` again
 
 ### Node IDs:
-- validator1/rpc: NodeID-APhFyzYExri3n5GtDz7ytXCgbt8x5NAud
+- rpc (incl. validator): NodeID-APhFyzYExri3n5GtDz7ytXCgbt8x5NAud
+- validator1: TODO
 - validator2: NodeID-7NenT29nACMVLj8K685mBLodfp6GehVy7
