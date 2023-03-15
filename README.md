@@ -1,4 +1,5 @@
 # Subnet Node Bootstrap Script
+You can bootstrap a subnet node either using the DO Snapshot (which includes the synced blockchain state), or from scratch on a fresh Ubuntu VPS using the installer script.
 
 ## Connection details
 Connect to the subnet using Metamask:
@@ -32,7 +33,7 @@ sudo systemctl start avalanchego
 
 If you want it to be a RPC node instead, open `/home/node/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file, _or_ run `./enable_rpc.sh` (not both!)
 
-## Bootstrap node with script
+## From scratch: Bootstrap node with script
 This downloads the AvalancheGo node client, Avalanche CLI, and adds all necessary config for our Dev Subnet for Ubuntu/Debian based VPS.
 
 ### Add new user
@@ -45,11 +46,14 @@ su -l node
 
 ### Run installer script
 Have your VPS' static IP handy. If you're bootstrapping a validator, keep RPC disabled. Run without root privileges.
+
 ```
 git clone https://github.com/xtools-at/subnet-bootstrap.git
 cd subnet-bootstrap
 sh install.sh
 ```
+
+It will take approximately 3-4 hours (!) for the node to be fully synced, if you're in a hurry use the _Snapshot based install_ described above instead.
 
 ### Starting/Stopping the node
 (run as `root`)
