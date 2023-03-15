@@ -4,6 +4,7 @@
 Connect to the subnet using Metamask:
 
 ```
+Network name: Beam Devnet
 RPC Url: http://157.230.66.23:9650/ext/bc/2NXVLcGbemMjwyexwigxCoqn7UJ6DdeJdWNPxcWX4Y2eDem1aW/rpc
 ChainID: 133
 Currency symbol: XP
@@ -19,9 +20,17 @@ Syncing a node fully can take some time, so we can use a partly bootstrapped nod
 - Restart node: `sudo systemctl restart avalanchego`
 
 If this node is supposed to become a validator, proceed with the steps for _Add node as subnet validator_ below
-- To "import" an existing validator (e.g. when moving instances), you'll have to copy over the contents in `~/.avalanchego/staking/*` and restart the the node
+- To "import" an existing validator (e.g. when moving instances), you'll have to copy over the contents in `~/.avalanchego/staking/*` and restart the the node:
+```
+sudo systemctl stop avalanchego
+# this will delete the current node's existing "identity" - thread carefully!
+rm /home/node/.avalanchego/staking/*
+# this copies the files over from another node:
+scp -r root@IP_OF_VPS_TO_COPY_FROM:/home/node/.avalanchego/staking/ /home/node/.avalanchego/
+sudo systemctl start avalanchego
+```
 
-If you want it to be a RPC node instead, open `/home/node/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file, or running `./enable_rpc.sh`
+If you want it to be a RPC node instead, open `/home/node/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file, _or_ run `./enable_rpc.sh` (not both!)
 
 ## Bootstrap node with script
 This downloads the AvalancheGo node client, Avalanche CLI, and adds all necessary config for our Dev Subnet for Ubuntu/Debian based VPS.
