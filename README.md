@@ -6,9 +6,13 @@ Syncing a node fully can take some time, so we can use a partly bootstrapped nod
 - Click the three-dot-menu on the most recent `synced-node` snapshot
 - Verify that the snapshot is available for the region you want to deploy your VPS to
 - Select "Create droplet" and spin up a VPS using the snapshot
-- If this node is supposed to become a validator, proceed with the steps for _Add node as subnet validator_ below
-  - To "import" an existing validator (e.g. when moving instances), you'll have to copy over the contents in `~/.avalanchego/staking/*` and restart the the node
-- If you want it to be a RPC node instead, open `~/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file
+- Update the `public-ip` property in `/home/node/.avalanchego/configs/node.json`, or remove it to auto detect it (not advised)
+- Restart node: `sudo systemctl restart avalanchego`
+
+If this node is supposed to become a validator, proceed with the steps for _Add node as subnet validator_ below
+- To "import" an existing validator (e.g. when moving instances), you'll have to copy over the contents in `~/.avalanchego/staking/*` and restart the the node
+
+If you want it to be a RPC node instead, open `/home/node/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file
 
 ## Bootstrap node with script
 This downloads the AvalancheGo node client, Avalanche CLI, and adds all necessary config for our Dev Subnet for Ubuntu/Debian based VPS.
@@ -64,7 +68,7 @@ avalanche subnet addValidator XP
 ```
 
 ### On your node
-- when your validator is all set on Avalanche network, run `~/bin/avalanche subnet join XP` to add it to the subnet too
+- when your validator is all set on Avalanche network, run `~/bin/avalanche subnet join XP` to add it to the subnet too (select "manual" when prompted, these steps have been done already)
 
 
 ## Misc
