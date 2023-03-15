@@ -3,7 +3,7 @@ SUBNET_ID=5NwYE9TC3FLB3q8QYFxV5foXp4hWX9avWXkzmjwoNv7DzRg2B
 
 echo "Subnet node bootstrap starting..."
 
-echo "Please enter static public IP of this node:"
+echo "Please enter static public IP of this node: (or use 'dynamic' or 'static' for auto detection)"
 read IP
 echo "Enable RPC? (y/n) - keep disabled for validators!"
 read RPC_ON
@@ -47,6 +47,9 @@ echo -e "\n\n"
 # Restart node to apply subnet config
 echo "Restarting node to apply config..."
 sudo systemctl start avalanchego
+echo "Waiting for node to start up..."
+sleep 15
+wait
 echo -e "\n\n"
 
 # Display NodeID
