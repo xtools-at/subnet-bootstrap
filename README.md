@@ -5,14 +5,15 @@ You can bootstrap a subnet node either using the DO Snapshot (which includes the
 Connect to the subnet using Metamask:
 
 ```
-Network name: Beam Devnet
+Network name: B Devnet
 RPC Url: http://157.230.66.23:9650/ext/bc/2NXVLcGbemMjwyexwigxCoqn7UJ6DdeJdWNPxcWX4Y2eDem1aW/rpc
-ChainID: 133
+Chain ID: 133
 Currency symbol: XP
 ```
 
 ## Quickstart: Bootstrap node with DO Snapshot
-Syncing a node fully can take some time, so we can use a partly bootstrapped node
+Syncing a node fully can take some time, so we can use a partly bootstrapped node:
+
 - Go to DigitalOcean -> Images -> Snapshot
 - Click the three-dot-menu on the most recent `synced-node` snapshot
 - Verify that the snapshot is available for the region you want to deploy your VPS to
@@ -75,10 +76,10 @@ sudo systemctl status avalanchego
 ### On your local machine
 - Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on the VPS:
 ```
-# create new random key
+# create new random key - for reference
 avalanche key create myKeyName
 
-# create new key from file
+# create new key from file, i.e. import key
 avalanche key create myKeyName --file /tmp/test.pk
 
 # show private key
