@@ -7,7 +7,8 @@ Syncing a node fully can take some time, so we can use a partly bootstrapped nod
 - Verify that the snapshot is available for the region you want to deploy your VPS to
 - Select "Create droplet" and spin up a VPS using the snapshot
 - If this node is supposed to become a validator, proceed with the steps for _Add node as subnet validator_ below
-  - If you want it to be a RPC node instead, open `~/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file
+  - To "import" an existing validator (e.g. when moving instances), you'll have to copy over the contents in `~/.avalanchego/staking/*` and restart the the node
+- If you want it to be a RPC node instead, open `~/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file
 
 ## Bootstrap node with script
 This downloads the AvalancheGo node client, Avalanche CLI, and adds all necessary config for our Dev Subnet for Ubuntu/Debian based VPS.
@@ -69,7 +70,7 @@ avalanche subnet addValidator XP
 - Don't forget to remove your user from the sudo'ers list when you're done: `sudo deluser node sudo`
 - You can find all log files here: `ls -la ~/.avalanchego/logs/`
 - To back up your validator/nodeID, copy the contents of `~/.avalanchego/staking/`
-- To update your node to the latest version, simply run `avalanchego-installer.sh` again
+- To update your node to the latest version, simply run `~/avalanchego-installer.sh` again
 
 ### Node IDs:
 - rpc (incl. validator): NodeID-APhFyzYExri3n5GtDz7ytXCgbt8x5NAud
