@@ -1,5 +1,14 @@
 # Subnet Node Bootstrap Script
 
+## Connection details
+Connect to the subnet using Metamask:
+
+```
+RPC Url: http://157.230.66.23:9650/ext/bc/2NXVLcGbemMjwyexwigxCoqn7UJ6DdeJdWNPxcWX4Y2eDem1aW/rpc
+ChainID: 133
+Currency symbol: XP
+```
+
 ## Quickstart: Bootstrap node with DO Snapshot
 Syncing a node fully can take some time, so we can use a partly bootstrapped node
 - Go to DigitalOcean -> Images -> Snapshot
@@ -12,7 +21,7 @@ Syncing a node fully can take some time, so we can use a partly bootstrapped nod
 If this node is supposed to become a validator, proceed with the steps for _Add node as subnet validator_ below
 - To "import" an existing validator (e.g. when moving instances), you'll have to copy over the contents in `~/.avalanchego/staking/*` and restart the the node
 
-If you want it to be a RPC node instead, open `/home/node/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file
+If you want it to be a RPC node instead, open `/home/node/.avalanchego/configs/node.json` and add `"http-host": ""` to the config file, or running `./enable_rpc.sh`
 
 ## Bootstrap node with script
 This downloads the AvalancheGo node client, Avalanche CLI, and adds all necessary config for our Dev Subnet for Ubuntu/Debian based VPS.
@@ -77,7 +86,10 @@ avalanche subnet addValidator XP
 - To back up your validator/nodeID, copy the contents of `~/.avalanchego/staking/`
 - To update your node to the latest version, simply run `~/avalanchego-installer.sh` again
 
-### Node IDs:
-- rpc (incl. validator): NodeID-APhFyzYExri3n5GtDz7ytXCgbt8x5NAud
-- validator1: NodeID-Ffr1YgeWw3h2Ct9dY7V3u79ScrAbhSUUz
-- validator2: NodeID-7NenT29nACMVLj8K685mBLodfp6GehVy7
+### VPS Node IDs:
+- validator1: NodeID-Ffr1YgeWw3h2Ct9dY7V3u79ScrAbhSUUz (20)
+- validator2: NodeID-7NenT29nACMVLj8K685mBLodfp6GehVy7 (20)
+- validator3: NodeID-PA9LANCKQbk9Un8Wv4SbBXoDCW4bP9yLk (50)
+- validator4: NodeID-PqZJgjNLDbeqmSg7hMWU8R1a5HCEjbBP9 (50)
+- validator5: NodeID-APhFyzYExri3n5GtDz7ytXCgbt8x5NAud (100)
+- rpc1: NodeID-F2M4P5DrPt8SA2WEV49zeH9PFTmLuqdnX

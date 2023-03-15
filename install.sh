@@ -34,6 +34,8 @@ echo -e "\n\n"
 
 # copy config
 echo "Copying config files..."
+chmod 755 node_id.sh
+chmod 755 enable_rpc.sh
 sudo systemctl stop avalanchego.service
 cp -r ./config/.avalanchego ~
 cp -r ./config/.avalanche-cli ~
@@ -53,7 +55,6 @@ wait
 echo -e "\n\n"
 
 # Display NodeID
-chmod 755 node_id.sh
 ./node_id.sh
 
 
