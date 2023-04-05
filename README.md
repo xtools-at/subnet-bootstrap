@@ -67,14 +67,17 @@ sudo systemctl status avalanchego
 
 
 ## Add node as subnet validator
-### Prep
+Your node is already configured to join the subnet, we just need to allow it to do so as a validator. For this, the node first have to become a _Avalanche_ validator, and it needs explicit approval to become a _subnet_ validator after that.
+### Avalanche validator
 - Have [Avalanche-CLI](https://docs.avax.network/subnets/install-avalanche-cli) ready and installed on your local machine
 - Wait for your node to be *fully* bootstrapped and in sync with the network
 - Add the node as a **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_, which you can e.g. get running `./node_id.sh`, extract from `head -n 5 ~/.avalanchego/logs/main.log`, or copy from the setup output.
   - _This may take up to 30min to apply_, if the steps below fail you'll have to wait a bit longer.
 
-### On your local machine
-- Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on the VPS:
+### Subnet validator
+On your local machine
+
+- Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on a VPS:
 ```
 # create new random key - for reference
 avalanche key create myKeyName
@@ -90,9 +93,55 @@ avalanche key export myKeyName
 avalanche subnet addValidator XP
 ```
 
-### On your node
-- when your validator is all set on Avalanche network, run `~/bin/avalanche subnet join XP` to add it to the subnet too (select "manual" when prompted, these steps have been done already)
+## Node updates
 
+### Automatic: Upgrade script
+This runs the steps outlined below for you, just need to do the manual inputs when prompted:
+```
+curl -sSfL https://raw.githubusercontent.com/xtools-at/subnet-bootstrap/main/upgrade.sh | sh -s
+```
+
+### Manual: Prep
+Switch to the `node` user
+```
+sudo adduser node sudo
+su -l node
+```
+
+### Update avalanchego
+To update to latest stable version:
+```
+./avalanchego-installer.sh
+```
+
+To update to a specific version, use the release's **tag** (see [repo](https://github.com/ava-labs/avalanchego/tags), e.g.:
+```
+./avalanchego-installer.sh --version v1.10.0-fuji
+```
+
+This automatically stops and restarts the node, stop it again afterwards using
+```
+sudo systemctl stop avalanchego
+```
+
+### Upgrade Subnet EVM
+Using Avalanche CLI:
+```
+avalanche subnet upgrade vm XP
+```
+
+1. Select "Fuji"
+2. Select "Update to latest version"
+  - (or "...specific version" and specify the release's *tag*, e.g. "v0.5.0-fuji" - see [repo](https://github.com/ava-labs/subnet-evm/tags))
+3. Select "Automatic"
+
+### Finishing touches
+Switch back to `root` and restart the node when you're done
+```
+exit
+sudo deluser node sudo
+sudo systemctl start avalanchego
+```
 
 ## Misc
 - Don't forget to remove your user from the sudo'ers list when you're done: `sudo deluser node sudo`
