@@ -114,7 +114,7 @@ To update to latest stable version:
 ./avalanchego-installer.sh
 ```
 
-To update to a specific version, use the release's **tag** (see [repo](https://github.com/ava-labs/avalanchego/tags), e.g.:
+To update to a specific version, use the release's **tag** (see [repo](https://github.com/ava-labs/avalanchego/tags)), e.g.:
 ```
 ./avalanchego-installer.sh --version v1.10.0-fuji
 ```
