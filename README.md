@@ -127,13 +127,12 @@ sudo systemctl stop avalanchego
 ### Upgrade Subnet EVM
 Using Avalanche CLI:
 ```
-avalanche subnet upgrade vm XP
+avalanche subnet upgrade vm XP --fuji
 ```
 
-1. Select "Fuji"
-2. Select "Update to latest version"
+1. Select "Update to latest version"
   - (or "...specific version" and specify the release's *tag*, e.g. "v0.5.0-fuji" - see [repo](https://github.com/ava-labs/subnet-evm/tags))
-3. Select "Automatic"
+2. Select "Automatic"
 
 ### Finishing touches
 Switch back to `root` and restart the node when you're done
