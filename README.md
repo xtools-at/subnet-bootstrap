@@ -6,7 +6,7 @@ Connect to the subnet using Metamask:
 
 ```
 Network name: B Devnet
-RPC Url: http://157.230.66.23:9650/ext/bc/2NXVLcGbemMjwyexwigxCoqn7UJ6DdeJdWNPxcWX4Y2eDem1aW/rpc
+RPC Url: https://rpc.connectednft.art:9650/ext/bc/2NXVLcGbemMjwyexwigxCoqn7UJ6DdeJdWNPxcWX4Y2eDem1aW/rpc
 Chain ID: 133
 Currency symbol: XP
 ```
