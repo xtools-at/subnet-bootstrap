@@ -77,15 +77,15 @@ Your node is already configured to join the subnet, we just need to allow it to 
 ### Subnet validator
 On your local machine
 
-- Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on a VPS:
+- Have the private key handy you've used to create your subnet with Avalanche CLI. You should **not** run this on a VPS. Some useful commands:
 ```
 # create new random key - for reference
 avalanche key create myKeyName
 
-# create new key from file, i.e. import key
+# import key from file
 avalanche key create myKeyName --file /tmp/test.pk
 
-# show private key
+# show private key, e.g. to use with Avalanche wallet
 avalanche key export myKeyName
 ```
 - Give the node permission to become validator on your subnet ("XP" in our example). You'll need your node's _NodeID_:
