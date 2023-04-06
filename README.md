@@ -96,12 +96,7 @@ avalanche subnet addValidator XP
 ## Node updates
 
 ### Automatic: Upgrade script
-This runs the steps outlined below for you, just need to do the manual inputs when prompted:
-```
-curl -sSfL https://raw.githubusercontent.com/xtools-at/subnet-bootstrap/main/upgrade.sh | sh -s
-```
-
-### Manual: Prep
+### Prep
 Switch to the `node` user
 ```
 sudo adduser node sudo
@@ -133,6 +128,11 @@ avalanche subnet upgrade vm XP --fuji
 1. Select "Update to latest version"
   - (or "...specific version" and specify the release's *tag*, e.g. "v0.5.0-fuji" - see [repo](https://github.com/ava-labs/subnet-evm/tags))
 2. Select "Automatic"
+
+You can also specify the version like this:
+```
+avalanche subnet upgrade vm XP --fuji --version v0.5.0-fuji-1
+```
 
 ### Finishing touches
 Switch back to `root` and restart the node when you're done
