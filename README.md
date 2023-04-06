@@ -71,7 +71,7 @@ Your node is already configured to join the subnet, we just need to allow it to 
 ### Avalanche validator
 - Have [Avalanche-CLI](https://docs.avax.network/subnets/install-avalanche-cli) ready and installed on your local machine
 - Wait for your node to be *fully* bootstrapped and in sync with the network
-- Add the node as a **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_, which you can e.g. get running `./node_id.sh`, extract from `head -n 5 ~/.avalanchego/logs/main.log`, or copy from the setup output.
+- Add the node as an **Avalanche** validator like described [here](https://docs.avax.network/nodes/validate/add-a-validator#add-a-validator-with-avalanche-wallet). You'll need to stake 1 AVAX on testnet, and supply your node's _NodeID_, which you can e.g. get by running `./node_id.sh`, extract from `head -n 5 ~/.avalanchego/logs/main.log`, or copy from the setup output.
   - _This may take up to 30min to apply_, if the steps below fail you'll have to wait a bit longer.
 
 ### Subnet validator
@@ -94,8 +94,6 @@ avalanche subnet addValidator XP
 ```
 
 ## Node updates
-
-### Automatic: Upgrade script
 ### Prep
 Switch to the `node` user
 ```
